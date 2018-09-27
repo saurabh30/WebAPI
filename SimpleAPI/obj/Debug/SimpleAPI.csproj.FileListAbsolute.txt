@@ -62,3 +62,9 @@ C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\obj\Debug\SimpleAPI.csp
 C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\obj\Debug\SimpleAPI.csproj.CopyComplete
 C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\obj\Debug\SimpleAPI.dll
 C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\obj\Debug\SimpleAPI.pdb
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\EntityFramework.dll
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\EntityFramework.SqlServer.dll
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\EntityFramework.xml
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\EntityFramework.SqlServer.xml
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\DataAccess.dll
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\DataAccess.pdb

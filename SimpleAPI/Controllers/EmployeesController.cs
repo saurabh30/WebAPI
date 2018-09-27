@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using DataAccess;
 using SimpleAPI.Models;
 
 namespace SimpleAPI.Controllers
 {
     public class EmployeesController : ApiController
     {
-        Employee[] employees = new Employee[]
+        EmployeeDataAccessLayer objemployee = new EmployeeDataAccessLayer();
+
+        public IEnumerable<Employee> GetAllEmployees()
         {
-            new Employee { Id = 1 , Name = "Saurabh" , Location = "Noida" },
-            new Employee { Id = 2 , Name = "Saurabh2" , Location = "Noida2" },
-            new Employee { Id = 3 , Name = "Saurabh3" , Location = "Noida3" },
-        };
-
-        public IEnumerable<Employee> GetAllEmployees() {
-            return employees;
+            return objemployee.GetAllEmployees();
         }
-
-        public IHttpActionResult GetEmployee(int id) {
-            var employee = employees.FirstOrDefault((p) => p.Id == id);
-            if ( employee == null) return NotFound();
-            return Ok(employee);
-        }
+       
     }
 }
