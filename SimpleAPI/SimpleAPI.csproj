@@ -107,6 +107,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BuisnessLayer\BuisnessLayer.csproj">
+      <Project>{c5acfc59-07cc-489a-b701-92a9c21cba3b}</Project>
+      <Name>BuisnessLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataAccess\DataAccess.csproj">
       <Project>{a1e84f67-c247-4453-974b-b12b1f9aa32f}</Project>
       <Name>DataAccess</Name>

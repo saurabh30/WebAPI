@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleAPI", "SimpleAPI\Simp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{A1E84F67-C247-4453-974B-B12B1F9AA32F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuisnessLayer", "BuisnessLayer\BuisnessLayer.csproj", "{C5ACFC59-07CC-489A-B701-92A9C21CBA3B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{A1E84F67-C247-4453-974B-B12B1F9AA32F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1E84F67-C247-4453-974B-B12B1F9AA32F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1E84F67-C247-4453-974B-B12B1F9AA32F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C5ACFC59-07CC-489A-B701-92A9C21CBA3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C5ACFC59-07CC-489A-B701-92A9C21CBA3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C5ACFC59-07CC-489A-B701-92A9C21CBA3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C5ACFC59-07CC-489A-B701-92A9C21CBA3B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
