@@ -16,8 +16,8 @@ namespace BuisnessLayer
             return obj.GetAllEmployees();
         }
 
-        public void AddEmployee(Employee employee) {
-            obj.AddEmployee(employee);
+        public Employee AddEmployee(Employee employee) {
+            return obj.AddEmployee(employee);
         }
 
         public Employee DelEmployee(int id) {

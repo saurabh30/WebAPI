@@ -114,11 +114,11 @@ namespace DataAccess
 
         }
 
-        public void AddEmployee(Employee employee)
+        public Employee AddEmployee(Employee employee)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spGetAllEmployee", con);
+                SqlCommand cmd = new SqlCommand("spAddEmployee", con);
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@Name",employee.Name);
@@ -128,6 +128,8 @@ namespace DataAccess
                 cmd.ExecuteNonQuery();
                 con.Close();
              }
+
+            return employee;
         }
 
 

@@ -56,5 +56,16 @@ namespace SimpleAPI.Controllers
                 return NotFound();
             return Ok(employee);
         }
+
+        public IHttpActionResult PostEmployee(Employee employee)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Employee emp = objemployee.AddEmployee(employee);
+            if (emp == null)
+                return NotFound();
+            return Ok(employee);
+        }
     }
 }
