@@ -44,6 +44,17 @@ namespace SimpleAPI.Controllers
             return Ok(employee);
         }
 
+        public IHttpActionResult PutEmployee(int id, Employee employee)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
+            if (id != employee.Id)
+                return BadRequest();
+            var emp = objemployee.UpdateEmployee(employee);
+            if (emp == null)
+                return NotFound();
+            return Ok(employee);
+        }
     }
 }

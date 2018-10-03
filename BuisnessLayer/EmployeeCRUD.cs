@@ -28,6 +28,9 @@ namespace BuisnessLayer
             return obj.GetEmployee(id);
         }
 
+        public Employee UpdateEmployee(Employee employee) {
+            return obj.UpdateEmployee(employee);
+        }
 
     }
 }

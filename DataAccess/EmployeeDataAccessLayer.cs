@@ -64,6 +64,22 @@ namespace DataAccess
 
         }
 
+        public Employee UpdateEmployee(Employee employee)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spUpdateEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", employee.Id);
+                cmd.Parameters.AddWithValue("@Name", employee.Name);
+                cmd.Parameters.AddWithValue("@Location", employee.Location);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+              
+            }
+            return employee;
+        }    
         public Employee DelEmployee(int id)
         {
             Employee employee = new Employee();
