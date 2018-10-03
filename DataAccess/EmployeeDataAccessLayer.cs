@@ -16,7 +16,6 @@ namespace DataAccess
         //To View all employees details
         public IEnumerable<Employee> GetAllEmployees()
         {
-
             List<Employee> listEmployee = new List<Employee>();
 
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -42,7 +41,7 @@ namespace DataAccess
 
         }
 
-        public Employee GetEmployee(int? id)
+        public Employee GetEmployee(int id)
         {
             Employee employee = new Employee();
 
@@ -65,6 +64,40 @@ namespace DataAccess
 
         }
 
+        public Employee DelEmployee(int id)
+        {
+            Employee employee = new Employee();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmpId", id);
+                con.Open();
+
+                SqlDataReader rdr = cmd.ExecuteReader();
+                
+                while (rdr.Read())
+                {
+                    employee.Id = Convert.ToInt32(rdr["Id"]);
+                    employee.Name = rdr["Name"].ToString();
+                    employee.Location = rdr["Location"].ToString();
+                }
+
+                con.Close();
+                con.Open();
+                cmd = new SqlCommand("spDeleteEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.ExecuteNonQuery();
+                con.Close();
+               
+
+            }
+            return employee;
+
+        }
+
         public void AddEmployee(Employee employee)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
@@ -80,6 +113,8 @@ namespace DataAccess
                 con.Close();
              }
         }
+
+
 
 
            

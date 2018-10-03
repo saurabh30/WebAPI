@@ -31,5 +31,19 @@ namespace SimpleAPI.Controllers
 
             return Ok(employee);
         }
+
+        public IHttpActionResult DeleteEmployee(int id)
+        {
+            var employee = objemployee.DelEmployee(id);
+           
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
+
+
     }
 }
