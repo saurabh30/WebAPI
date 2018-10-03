@@ -20,6 +20,16 @@ namespace SimpleAPI.Controllers
         {
             return objemployee.GetAllEmployees();
         }
-     
+
+        public IHttpActionResult GetEmployee(int id)
+        {
+            var employee = objemployee.GetEmployee(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(employee);
+        }
     }
 }

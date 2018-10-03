@@ -40,7 +40,48 @@ namespace DataAccess
             }
             return listEmployee;
 
-        } 
+        }
+
+        public Employee GetEmployee(int? id)
+        {
+            Employee employee = new Employee();
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@EmpId",id);
+                con.Open();
+                SqlDataReader rdr = cmd.ExecuteReader();
+
+                while (rdr.Read())
+                {
+                    employee.Id = Convert.ToInt32(rdr["Id"]);
+                    employee.Name = rdr["Name"].ToString();
+                    employee.Location = rdr["Location"].ToString();
+                }
+            }
+            return employee;
+
+        }
+
+        public void AddEmployee(Employee employee)
+        {
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                SqlCommand cmd = new SqlCommand("spGetAllEmployee", con);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@Name",employee.Name);
+                cmd.Parameters.AddWithValue("@Location",employee.Location);
+
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+             }
+        }
+
+
            
     }
 }

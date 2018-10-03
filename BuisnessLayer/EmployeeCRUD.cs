@@ -15,5 +15,14 @@ namespace BuisnessLayer
         public IEnumerable<Employee> GetAllEmployees() {
             return obj.GetAllEmployees();
         }
+
+        public void AddEmployee(Employee employee) {
+            obj.AddEmployee(employee);
+        }
+
+        public Employee GetEmployee(int? id)
+        {
+            return obj.GetEmployee(id);
+        }
     }
 }
