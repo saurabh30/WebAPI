@@ -61,10 +61,11 @@ namespace SimpleAPI.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            Employee emp = objemployee.AddEmployee(employee);
-            if (emp == null)
+            Int32 Id = objemployee.AddEmployee(employee);
+            if (Id == 0)
                 return NotFound();
-            return Ok(employee);
+            employee.Id = Id;
+            return Created(new Uri(Request.RequestUri +""+ Id) , employee);
         }
     }
 }

@@ -80,19 +80,22 @@ namespace DataAccess
 
         }
 
-        public Employee AddEmployee(Employee employee)
+        public Int32 AddEmployee(Employee employee)
         {
+            var id = 0;
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@Name", employee.Name);
                 param.Add("@Location", employee.Location);
+                param.Add("@id", dbType: DbType.Int32, direction: ParameterDirection.Output);
                 con.Open();
                 con.Execute("spAddEmployee",param, commandType: CommandType.StoredProcedure);
+                id = param.Get<int>("@id");
                 con.Close();
              }
 
-            return employee;
+            return id;
         }
 
 
