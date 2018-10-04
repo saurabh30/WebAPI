@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using Dapper;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,29 +17,14 @@ namespace DataAccess
         //To View all employees details
         public IEnumerable<Employee> GetAllEmployees()
         {
-            List<Employee> listEmployee = new List<Employee>();
-
+           
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spGetAllEmployee", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
                 con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    Employee employee = new Employee();
-
-                    employee.Id = Convert.ToInt32(rdr["Id"]);
-                    employee.Name = rdr["Name"].ToString();
-                    employee.Location = rdr["Location"].ToString();
-
-                    listEmployee.Add(employee);
-                }
+                var employees = con.Query<Employee>("spGetAllEmployee", commandType: CommandType.StoredProcedure);
+                return employees;
             }
-            return listEmployee;
-
+            
         }
 
         public Employee GetEmployee(int id)
@@ -47,18 +33,11 @@ namespace DataAccess
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spGetEmployee", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@EmpId",id);
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@EmpId", id);
                 con.Open();
-                SqlDataReader rdr = cmd.ExecuteReader();
-
-                while (rdr.Read())
-                {
-                    employee.Id = Convert.ToInt32(rdr["Id"]);
-                    employee.Name = rdr["Name"].ToString();
-                    employee.Location = rdr["Location"].ToString();
-                }
+                employee = con.QueryFirstOrDefault<Employee>("spGetEmployee", param, commandType: CommandType.StoredProcedure);
+                con.Close();
             }
             return employee;
 
@@ -68,13 +47,12 @@ namespace DataAccess
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spUpdateEmployee", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", employee.Id);
-                cmd.Parameters.AddWithValue("@Name", employee.Name);
-                cmd.Parameters.AddWithValue("@Location", employee.Location);
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@Id", employee.Id);
+                param.Add("@Name", employee.Name);
+                param.Add("@Location", employee.Location);
                 con.Open();
-                cmd.ExecuteNonQuery();
+                con.Execute("spUpdateEmployee", param, commandType: CommandType.StoredProcedure);
                 con.Close();
               
             }
@@ -86,29 +64,17 @@ namespace DataAccess
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spGetEmployee", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@EmpId", id);
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@EmpId", id);
                 con.Open();
-
-                SqlDataReader rdr = cmd.ExecuteReader();
-                
-                while (rdr.Read())
-                {
-                    employee.Id = Convert.ToInt32(rdr["Id"]);
-                    employee.Name = rdr["Name"].ToString();
-                    employee.Location = rdr["Location"].ToString();
-                }
-
+                employee = con.QueryFirstOrDefault<Employee>("spGetEmployee", param, commandType: CommandType.StoredProcedure);
                 con.Close();
+                con.Close();
+                param = new DynamicParameters();
+                param.Add("@Id", id);
                 con.Open();
-                cmd = new SqlCommand("spDeleteEmployee", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.ExecuteNonQuery();
+                con.Execute("spDeleteEmployee", param, commandType: CommandType.StoredProcedure);
                 con.Close();
-               
-
             }
             return employee;
 
@@ -118,14 +84,11 @@ namespace DataAccess
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                SqlCommand cmd = new SqlCommand("spAddEmployee", con);
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("@Name",employee.Name);
-                cmd.Parameters.AddWithValue("@Location",employee.Location);
-
+                DynamicParameters param = new DynamicParameters();
+                param.Add("@Name", employee.Name);
+                param.Add("@Location", employee.Location);
                 con.Open();
-                cmd.ExecuteNonQuery();
+                con.Execute("spAddEmployee",param, commandType: CommandType.StoredProcedure);
                 con.Close();
              }
 

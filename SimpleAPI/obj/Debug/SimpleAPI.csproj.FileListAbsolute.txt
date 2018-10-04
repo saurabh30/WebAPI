@@ -70,3 +70,5 @@ C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\DataAccess.dll
 C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\DataAccess.pdb
 C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\BuisnessLayer.dll
 C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\BuisnessLayer.pdb
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\Dapper.dll
+C:\Users\saurabh.gupta4\source\repos\SimpleAPI\SimpleAPI\bin\Dapper.xml
