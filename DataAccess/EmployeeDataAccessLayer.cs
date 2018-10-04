@@ -43,7 +43,7 @@ namespace DataAccess
 
         }
 
-        public Employee UpdateEmployee(Employee employee)
+        public void UpdateEmployee(Employee employee)
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -56,28 +56,18 @@ namespace DataAccess
                 con.Close();
               
             }
-            return employee;
+            
         }    
-        public Employee DelEmployee(int id)
+        public void DelEmployee(int id)
         {
-            Employee employee = new Employee();
-
             using (SqlConnection con = new SqlConnection(connectionString))
             {
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@EmpId", id);
-                con.Open();
-                employee = con.QueryFirstOrDefault<Employee>("spGetEmployee", param, commandType: CommandType.StoredProcedure);
-                con.Close();
-                con.Close();
-                param = new DynamicParameters();
                 param.Add("@Id", id);
                 con.Open();
                 con.Execute("spDeleteEmployee", param, commandType: CommandType.StoredProcedure);
                 con.Close();
-            }
-            return employee;
-
+            }        
         }
 
         public Int32 AddEmployee(Employee employee)

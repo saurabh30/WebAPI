@@ -20,16 +20,18 @@ namespace BuisnessLayer
             return obj.AddEmployee(employee);
         }
 
-        public Employee DelEmployee(int id) {
-            return obj.DelEmployee(id);
+        public void  DelEmployee(int id) {
+            obj.DelEmployee(id);
+            return;
         }
         public Employee GetEmployee(int id)
         {
             return obj.GetEmployee(id);
         }
 
-        public Employee UpdateEmployee(Employee employee) {
-            return obj.UpdateEmployee(employee);
+        public void UpdateEmployee(Employee employee) {
+            obj.UpdateEmployee(employee);
+            return;
         }
 
     }

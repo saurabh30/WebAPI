@@ -34,14 +34,8 @@ namespace SimpleAPI.Controllers
 
         public IHttpActionResult DeleteEmployee(int id)
         {
-            var employee = objemployee.DelEmployee(id);
-           
-            if (employee == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(employee);
+             objemployee.DelEmployee(id);
+             return Ok();
         }
 
         public IHttpActionResult PutEmployee([FromBody]Employee employee)
@@ -50,10 +44,8 @@ namespace SimpleAPI.Controllers
                 return BadRequest(ModelState);
 
           
-            var emp = objemployee.UpdateEmployee(employee);
-            if (emp == null)
-                return NotFound();
-            return Ok(employee);
+            objemployee.UpdateEmployee(employee);
+            return Ok();
         }
 
         public IHttpActionResult PostEmployee(Employee employee)
